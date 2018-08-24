@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net35</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <CustomCommands>
+      <CustomCommands>
+        <Command>
+          <type>AfterBuild</type>
+          <command>cp ${TargetFile} "/Users/ben/Library/Application Support/Steam/steamapps/common/KSP_DEBUG/GameData/MyFirstKSPModule/Plugins"</command>
+          <workingdir>${TargetDir}</workingdir>
+        </Command>
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\Library\Application Support\Steam\steamapps\common\Kerbal Space Program\KSP.app\Contents\Resources\Data\Managed\Assembly-CSharp.dll</HintPath>
+      <IncludeInPackage>false</IncludeInPackage>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\Library\Application Support\Steam\steamapps\common\Kerbal Space Program\KSP.app\Contents\Resources\Data\Managed\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Library\Application Support\Steam\steamapps\common\Kerbal Space Program\KSP.app\Contents\Resources\Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Library\Application Support\Steam\steamapps\common\Kerbal Space Program\KSP.app\Contents\Resources\Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\..\Library\Application Support\Steam\steamapps\common\Kerbal Space Program\KSP.app\Contents\Resources\Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\..\..\Library\Application Support\Steam\steamapps\common\Kerbal Space Program\KSP.app\Contents\Resources\Data\Managed\System.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\Library\Application Support\Steam\steamapps\common\Kerbal Space Program\KSP.app\Contents\Resources\Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\..\Library\Application Support\Steam\steamapps\common\Kerbal Space Program\KSP.app\Contents\Resources\Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\Desktop\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+</Project>
