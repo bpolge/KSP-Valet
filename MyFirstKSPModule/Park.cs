@@ -22,14 +22,25 @@ namespace MyFirstKSPModule
                     onTrue,
                     onFalse,
                     null, null, null, null,
-                    ApplicationLauncher.AppScenes.SPACECENTER,
+                    ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.FLIGHT,
                     appLauncherIcon
                 );
             }
         }
 
+        public void Start()
+        {
+            GameEvents.onGUIApplicationLauncherReady.Add(AddToStockAppLauncher);
+            GameEvents.onGUIApplicationLauncherDestroyed.Add(delegate {
+                if (appLaunchButton != null)
+                {
+                    ApplicationLauncher.Instance.RemoveModApplication(appLaunchButton);
+                }
+            });
+        }
+
         private bool _displayGUI = false;
-        private Rect _windowPostition = new Rect();
+        private Rect _windowPostition = new Rect(20f, 100f, 250f, 150f);
         private void onShowGUI() {
             Debug.Log("PARK_MOD::DEBUG: onShowGUI");
             _displayGUI = true;
@@ -37,9 +48,16 @@ namespace MyFirstKSPModule
 
         private void OnWindow(int id)
         {
+            GUIStyle label = new GUIStyle(GUI.skin.button);
+
             // Debug.Log("PARK_MOD::DEBUG: OnWindow");
             GUILayout.BeginHorizontal(GUILayout.Width(250f));
-            GUILayout.Label("This is my Layout");
+            GUILayout.Label("This is my Layout", label);
+            GUILayout.Label("YESSIR");
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal(GUILayout.Width(250f));
+            GUILayout.Label("Another one", label);
             GUILayout.EndHorizontal();
 
             GUI.DragWindow();
@@ -63,7 +81,7 @@ namespace MyFirstKSPModule
             arrBytes = KSP.IO.File.ReadAllBytes<Park>("TeamRedLogo.png", null);
             Debug.Log("!!!!!!!!!!!!!!!");
             Debug.Log(arrBytes.ToString());
-            ImageConversion.LoadImage(appLauncherIcon, arrBytes);
+            appLauncherIcon.LoadImage(arrBytes);
         }
 
         public void Update()
@@ -71,15 +89,7 @@ namespace MyFirstKSPModule
             // Debug.Log("PARK_MOD::DEBUG: Upodate");
         }
 
-        public void Start()
-        {
-            GameEvents.onGUIApplicationLauncherReady.Add(AddToStockAppLauncher);
-            GameEvents.onGUIApplicationLauncherDestroyed.Add(delegate {
-                if (appLaunchButton != null) {
-                    ApplicationLauncher.Instance.RemoveModApplication(appLaunchButton);
-                }
-            });
-        }
+
 
     }
 }
